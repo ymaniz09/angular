@@ -7,6 +7,7 @@
     private _inputData: HTMLInputElement;
     private _inputQuantity: HTMLInputElement;
     private _inputValue: HTMLInputElement;
+    private _negotiations = new Negotiations();
 
     constructor() {
         this._inputData = <HTMLInputElement> document.querySelector("#date")
@@ -23,6 +24,12 @@
             parseFloat(this._inputValue.value)
         );
 
-        console.log(negotiation);
+        this._negotiations.add(negotiation);
+        this._negotiations.toArray().forEach(negotiation => {
+            console.log(negotiation.date);
+            console.log(negotiation.quantity);
+            console.log(negotiation.value);
+        });
+        
     }
  }
