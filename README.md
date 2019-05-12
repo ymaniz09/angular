@@ -4,3 +4,4 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 
 ## TypeScript parte 1: Evoluindo seu Javascript
 - [X] Bem começado, metade feito
+- [X] Benefícios da tipagem estática
