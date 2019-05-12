@@ -1,5 +1,5 @@
 /**
- * This controller will handle the user inputs to build a negociation
+ * This controller will handle the user inputs to build a negotiation
  */
 
  class NegotiationController {
