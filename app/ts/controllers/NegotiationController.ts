@@ -1,6 +1,6 @@
 import { Negotiations, Negotiation, PartialNegotiation } from "../models/index";
 import { NegotiationsView, FeedbackView } from "../views/index";
-import { domInject } from "../helpers/decorators/index";
+import { domInject, throttle } from "../helpers/decorators/index";
 
 /**
  * This controller will handle the user inputs to build a negotiation
@@ -23,10 +23,10 @@ export class NegotiationController {
     constructor() {
         this._negotiationsView.update(this._negotiations);
     }
-
+    
+    @throttle()
     add(event: Event) {
-        event.preventDefault();
-
+    
         let date = new Date(this._inputData.val().replace(/-/g, ','));
 
         if (!this._isWorkingDay(date)) {
@@ -52,6 +52,7 @@ export class NegotiationController {
         return data.getDay() != WeekDays.Saturday && data.getDay() != WeekDays.Sunday;
     }
 
+    @throttle()
     importData() {
 
         function isOK(res: Response) {

@@ -29,7 +29,6 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
                     this._negotiationsView.update(this._negotiations);
                 }
                 add(event) {
-                    event.preventDefault();
                     let date = new Date(this._inputData.val().replace(/-/g, ','));
                     if (!this._isWorkingDay(date)) {
                         this._feedbackView.update('Somente negociações em dias úteis, por favor!');
@@ -73,6 +72,12 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
             __decorate([
                 index_3.domInject('#value')
             ], NegotiationController.prototype, "_inputValue", void 0);
+            __decorate([
+                index_3.throttle()
+            ], NegotiationController.prototype, "add", null);
+            __decorate([
+                index_3.throttle()
+            ], NegotiationController.prototype, "importData", null);
             exports_1("NegotiationController", NegotiationController);
             (function (WeekDays) {
                 WeekDays[WeekDays["Sunday"] = 0] = "Sunday";
