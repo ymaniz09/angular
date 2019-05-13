@@ -53,9 +53,13 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
                         throw new Error(res.statusText);
                     };
                     this._negotiationService.fetchNegotiations(isOk)
-                        .then((negotiations) => {
-                        negotiations.forEach(negotiation => this._negotiations.add(negotiation));
-                        this._negotiationsView.update(this._negotiations);
+                        .then((negotiationsToImport) => {
+                        const alreadyImported = this._negotiations.toArray();
+                        if (negotiationsToImport) {
+                            negotiationsToImport.filter(negotiation => !alreadyImported.some(alreadyImported => negotiation.equals(alreadyImported)))
+                                .forEach(negotiation => this._negotiations.add(negotiation));
+                            this._negotiationsView.update(this._negotiations);
+                        }
                     });
                 }
             };

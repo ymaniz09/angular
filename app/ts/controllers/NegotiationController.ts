@@ -63,10 +63,19 @@ export class NegotiationController {
         }
 
         this._negotiationService.fetchNegotiations(isOk)
-            .then((negotiations: Negotiation[]) => {
-                negotiations.forEach(negotiation =>
-                    this._negotiations.add(negotiation));
-                this._negotiationsView.update(this._negotiations);
+            .then((negotiationsToImport: Negotiation[]) => {
+
+                const alreadyImported = this._negotiations.toArray();
+
+                if (negotiationsToImport) {
+                    negotiationsToImport.filter(negotiation =>
+                    !alreadyImported.some(alreadyImported => 
+                        negotiation.equals(alreadyImported)))
+                        .forEach(negotiation => 
+                            this._negotiations.add(negotiation));
+        
+                        this._negotiationsView.update(this._negotiations);
+                }
             });
 
     }

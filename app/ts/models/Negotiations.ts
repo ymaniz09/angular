@@ -1,7 +1,7 @@
 import { Negotiation } from "./Negotiation";
-import { Printable } from "./Printable";
+import { MyObject } from "./MyObject";
 
-export class Negotiations extends Printable {
+export class Negotiations implements MyObject<Negotiations> {
     private _negotiations: Negotiation[] = [];
 
     add(negotiation:Negotiation): void {
@@ -18,5 +18,10 @@ export class Negotiations extends Printable {
     logOnConsole(): void {
         console.log('-- logOnConsole --');
         console.log(JSON.stringify(this._negotiations));
+    }
+
+    equals(negotiations: Negotiations): boolean {
+
+        return JSON.stringify(this._negotiations) == JSON.stringify(negotiations.toArray());
     }
 }

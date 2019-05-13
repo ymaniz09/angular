@@ -14,4 +14,4 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 - [X] Lapidando nosso código
 - [X] O poder dos decorators
 - [X] API externa e interface
-- [ ] Mais sobre interfaces
+- [X] Mais sobre interfaces

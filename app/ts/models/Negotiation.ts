@@ -1,11 +1,8 @@
-import { Printable } from "./Printable";
+import { MyObject } from "./MyObject";
 
-export class Negotiation extends Printable {
+export class Negotiation implements MyObject<Negotiation> {
 
-    constructor(readonly date: Date, readonly quantity: number, readonly value: number) { 
-
-        super();
-    }
+    constructor(readonly date: Date, readonly quantity: number, readonly value: number) {}
 
     get total() {
 
@@ -22,6 +19,12 @@ export class Negotiation extends Printable {
             Total: ${this.total}
             `
         );
+    }
+
+    equals(negotiation: Negotiation): boolean {
+        return this.date.getDate() == negotiation.date.getDate()
+            && this.date.getMonth() == negotiation.date.getMonth()
+            && this.date.getFullYear() == negotiation.date.getFullYear();
     }
 }
 
