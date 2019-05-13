@@ -55,31 +55,30 @@ export class NegotiationController {
     }
 
     @throttle()
-    importData() {
+    async importData() {
+        try {
 
-        const isOk: HandlerFunction = (res: Response) => {
-            if(res.ok) return res;
-            throw new Error(res.statusText);
-        }
+            const isOk: HandlerFunction = (res: Response) => {
+                if (res.ok) return res;
+                throw new Error(res.statusText);
+            }
 
-        this._negotiationService.fetchNegotiations(isOk)
-            .then((negotiationsToImport: Negotiation[]) => {
+            const negotiationsToImport = await this._negotiationService.fetchNegotiations(isOk)
 
-                const alreadyImported = this._negotiations.toArray();
+            const alreadyImported = this._negotiations.toArray();
 
-                if (negotiationsToImport) {
-                    negotiationsToImport.filter(negotiation =>
-                    !alreadyImported.some(alreadyImported => 
+            if (negotiationsToImport) {
+                negotiationsToImport.filter(negotiation =>
+                    !alreadyImported.some(alreadyImported =>
                         negotiation.equals(alreadyImported)))
-                        .forEach(negotiation => 
-                            this._negotiations.add(negotiation));
-        
-                        this._negotiationsView.update(this._negotiations);
-                }
-            })
-            .catch(err => {
-                this._feedbackView.update(err.message)
-            });
+                    .forEach(negotiation =>
+                        this._negotiations.add(negotiation));
+
+                this._negotiationsView.update(this._negotiations);
+            }
+        } catch (err) {
+            this._feedbackView.update(err.message);
+        }
 
     }
 }
