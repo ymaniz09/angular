@@ -1,23 +1,26 @@
 import { Negotiations, Negotiation } from "../models/index";
 import { NegotiationsView, FeedbackView } from "../views/index";
+import { domInject } from "../helpers/decorators/index";
 
 /**
  * This controller will handle the user inputs to build a negotiation
  */
 
 export class NegotiationController {
+    @domInject('#date')
     private _inputData: JQuery;
+
+    @domInject('#quantity')
     private _inputQuantity: JQuery;
+
+    @domInject('#value')
     private _inputValue: JQuery;
+
     private _negotiations = new Negotiations();
     private _negotiationsView = new NegotiationsView("#negotiationsView");
     private _feedbackView = new FeedbackView("#feedbackView");
 
     constructor() {
-        this._inputData = $("#date");
-        this._inputQuantity = $("#quantity");
-        this._inputValue = $("#value");
-
         this._negotiationsView.update(this._negotiations);
     }
 
