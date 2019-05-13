@@ -13,5 +13,5 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 - [X] NameSpace e módulos externos
 - [X] Lapidando nosso código
 - [X] O poder dos decorators
-- [ ] API externa e interface
+- [X] API externa e interface
 - [ ] Mais sobre interfaces

@@ -1,6 +1,7 @@
 import { Negotiations, Negotiation, PartialNegotiation } from "../models/index";
 import { NegotiationsView, FeedbackView } from "../views/index";
 import { domInject, throttle } from "../helpers/decorators/index";
+import { NegotiationService, HandlerFunction } from "../services/index";
 
 /**
  * This controller will handle the user inputs to build a negotiation
@@ -19,19 +20,20 @@ export class NegotiationController {
     private _negotiations = new Negotiations();
     private _negotiationsView = new NegotiationsView("#negotiationsView");
     private _feedbackView = new FeedbackView("#feedbackView");
+    private _negotiationService = new NegotiationService();
 
     constructor() {
         this._negotiationsView.update(this._negotiations);
     }
-    
+
     @throttle()
     add(event: Event) {
-    
+
         let date = new Date(this._inputData.val().replace(/-/g, ','));
 
         if (!this._isWorkingDay(date)) {
             this._feedbackView.update('Somente negociações em dias úteis, por favor!');
-            return 
+            return
         }
 
         const negotiation = new Negotiation(
@@ -55,26 +57,18 @@ export class NegotiationController {
     @throttle()
     importData() {
 
-        function isOK(res: Response) {
-
-            if(res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }
+        const isOk: HandlerFunction = (res: Response) => {
+            if(res.ok) return res;
+            throw new Error(res.statusText);
         }
 
-        fetch('http://localhost:8080/dados')
-            .then(res => isOK(res))
-            .then(res => res.json())
-            .then((dados: PartialNegotiation[]) => {
-                dados
-                    .map(dado => new Negotiation(new Date(), dado.vezes, dado.montante))
-                    .forEach(negotiation => this._negotiations.add(negotiation));
+        this._negotiationService.fetchNegotiations(isOk)
+            .then((negotiations: Negotiation[]) => {
+                negotiations.forEach(negotiation =>
+                    this._negotiations.add(negotiation));
                 this._negotiationsView.update(this._negotiations);
-            })
-            .catch(err => console.log(err.message));  
-        
+            });
+
     }
 }
 
@@ -82,8 +76,8 @@ enum WeekDays {
     Sunday,
     Monday,
     Tuesday,
-    Wednesday, 
-    Thursday, 
-    Friday, 
-    Saturday, 
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
 }
