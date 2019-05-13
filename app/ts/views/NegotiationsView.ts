@@ -1,5 +1,5 @@
 import { BaseView } from "./BaseView";
-import { Negotiations } from "../models/negotiations";
+import { Negotiations } from "../models/Negotiations";
 
 /**
  * This view will show the list of negotiations
