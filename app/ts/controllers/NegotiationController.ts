@@ -51,6 +51,30 @@ export class NegotiationController {
 
         return data.getDay() != WeekDays.Saturday && data.getDay() != WeekDays.Sunday;
     }
+
+    importData() {
+
+        function isOK(res: Response) {
+
+            if(res.ok) {
+                return res;
+            } else {
+                throw new Error(res.statusText);
+            }
+        }
+
+        fetch('http://localhost:8080/dados')
+            .then(res => isOK(res))
+            .then(res => res.json())
+            .then((dados: any[]) => {
+                dados
+                    .map(dado => new Negotiation(new Date(), dado.vezes, dado.montante))
+                    .forEach(negotiation => this._negotiations.add(negotiation));
+                this._negotiationsView.update(this._negotiations);
+            })
+            .catch(err => console.log(err.message));  
+        
+    }
 }
 
 enum WeekDays {
