@@ -1,6 +1,3 @@
-/**
- * This view will show the list of negotiations
- */
 class NegotiationsView extends BaseView {
     template(model) {
         return `

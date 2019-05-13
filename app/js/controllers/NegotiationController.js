@@ -1,6 +1,3 @@
-/**
- * This controller will handle the user inputs to build a negotiation
- */
 class NegotiationController {
     constructor() {
         this._negotiations = new Negotiations();
