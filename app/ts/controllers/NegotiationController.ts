@@ -23,6 +23,14 @@ export class NegotiationController {
 
     add(event: Event) {
         event.preventDefault();
+
+        let date = new Date(this._inputData.val().replace(/-/g, ','));
+
+        if (!this._isWorkingDay(date)) {
+            this._feedbackView.update('Somente negociações em dias úteis, por favor!');
+            return 
+        }
+
         const negotiation = new Negotiation(
             new Date(this._inputData.val().replace(/-/g, ",")),
             parseInt(this._inputQuantity.val()),
@@ -35,4 +43,19 @@ export class NegotiationController {
 
         this._feedbackView.update("Negociação adicionada com sucesso");
     }
+
+    private _isWorkingDay(data: Date) {
+
+        return data.getDay() != WeekDays.Saturday && data.getDay() != WeekDays.Sunday;
+    }
+}
+
+enum WeekDays {
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday, 
+    Thursday, 
+    Friday, 
+    Saturday, 
 }

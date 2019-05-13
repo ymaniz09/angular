@@ -11,7 +11,7 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 
 ## TypeScript parte 2: Mais técnicas e boas práticas
 - [X] NameSpace e módulos externos
-- [ ] Lapidando nosso código
+- [X] Lapidando nosso código
 - [ ] O poder dos decorators
 - [ ] API externa e interface
 - [ ] Mais sobre interfaces
