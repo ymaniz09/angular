@@ -3,17 +3,17 @@
  */
 
 class NegotiationController {
-    private _inputData: HTMLInputElement;
-    private _inputQuantity: HTMLInputElement;
-    private _inputValue: HTMLInputElement;
+    private _inputData: JQuery;
+    private _inputQuantity: JQuery;
+    private _inputValue: JQuery;
     private _negotiations = new Negotiations();
     private _negotiationsView = new NegotiationsView("#negotiationsView");
     private _feedbackView = new FeedbackView("#feedbackView");
 
     constructor() {
-        this._inputData = <HTMLInputElement>document.querySelector("#date");
-        this._inputQuantity = <HTMLInputElement>document.querySelector("#quantity");
-        this._inputValue = <HTMLInputElement>document.querySelector("#value");
+        this._inputData = $("#date");
+        this._inputQuantity = $("#quantity");
+        this._inputValue = $("#value");
 
         this._negotiationsView.update(this._negotiations);
     }
@@ -21,9 +21,9 @@ class NegotiationController {
     add(event: Event) {
         event.preventDefault();
         const negotiation = new Negotiation(
-            new Date(this._inputData.value.replace(/-/g, ",")),
-            parseInt(this._inputQuantity.value),
-            parseFloat(this._inputValue.value)
+            new Date(this._inputData.val().replace(/-/g, ",")),
+            parseInt(this._inputQuantity.val()),
+            parseFloat(this._inputValue.val())
         );
 
         this._negotiations.add(negotiation);

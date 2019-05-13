@@ -6,14 +6,14 @@ class NegotiationController {
         this._negotiations = new Negotiations();
         this._negotiationsView = new NegotiationsView("#negotiationsView");
         this._feedbackView = new FeedbackView("#feedbackView");
-        this._inputData = document.querySelector("#date");
-        this._inputQuantity = document.querySelector("#quantity");
-        this._inputValue = document.querySelector("#value");
+        this._inputData = $("#date");
+        this._inputQuantity = $("#quantity");
+        this._inputValue = $("#value");
         this._negotiationsView.update(this._negotiations);
     }
     add(event) {
         event.preventDefault();
-        const negotiation = new Negotiation(new Date(this._inputData.value.replace(/-/g, ",")), parseInt(this._inputQuantity.value), parseFloat(this._inputValue.value));
+        const negotiation = new Negotiation(new Date(this._inputData.val().replace(/-/g, ",")), parseInt(this._inputQuantity.val()), parseFloat(this._inputValue.val()));
         this._negotiations.add(negotiation);
         this._negotiationsView.update(this._negotiations);
         this._feedbackView.update("Negociação adicionada com sucesso");
