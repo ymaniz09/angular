@@ -1,17 +1,8 @@
 /**
  * This view will show the list of negotiations
  */
-class NegotiationsView {
-    private _element: Element;
-
-    constructor(selector: string) {
-        this._element = document.querySelector(selector);
-    }
-
-    update(model: Negotiations): void {
-        this._element.innerHTML = this.template(model);
-    }
-
+class NegotiationsView extends BaseView<Negotiations> {
+    
     template(model: Negotiations): string {
         return `
         <table class="table table-hover table-bordered">

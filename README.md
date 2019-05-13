@@ -6,3 +6,4 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 - [X] Bem começado, metade feito
 - [X] Benefícios da tipagem estática
 - [X] Elaborando uma solução de view
+- [X] Herança, reaproveitamento de código
