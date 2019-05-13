@@ -60,6 +60,9 @@ System.register(["../models/index", "../views/index", "../helpers/decorators/ind
                                 .forEach(negotiation => this._negotiations.add(negotiation));
                             this._negotiationsView.update(this._negotiations);
                         }
+                    })
+                        .catch(err => {
+                        this._feedbackView.update(err.message);
                     });
                 }
             };

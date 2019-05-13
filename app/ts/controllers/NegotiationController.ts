@@ -76,6 +76,9 @@ export class NegotiationController {
         
                         this._negotiationsView.update(this._negotiations);
                 }
+            })
+            .catch(err => {
+                this._feedbackView.update(err.message)
             });
 
     }
