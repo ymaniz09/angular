@@ -1,6 +1,7 @@
 import { Negotiation } from "./Negotiation";
+import { Printable } from "./Printable";
 
-export class Negotiations {
+export class Negotiations extends Printable {
     private _negotiations: Negotiation[] = [];
 
     add(negotiation:Negotiation): void {
@@ -12,5 +13,10 @@ export class Negotiations {
      */
     toArray(): Negotiation[] {
         return ([] as Negotiation[]).concat(this._negotiations);
+    }
+
+    logOnConsole(): void {
+        console.log('-- logOnConsole --');
+        console.log(JSON.stringify(this._negotiations));
     }
 }
