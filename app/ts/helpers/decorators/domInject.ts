@@ -7,7 +7,7 @@ export function domInject(selector: string) {
         const getter = function() {
 
             if(!element) {
-                console.log(`buscando  ${selector} para injetar em ${key}`);
+                console.log(`fetching  ${selector} to inject in ${key}`);
                 element = $(selector);
             }
 

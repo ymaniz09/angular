@@ -6,18 +6,18 @@ System.register([], function (exports_1, context_1) {
             const originalMethod = descriptor.value;
             descriptor.value = function (...args) {
                 let divider = 1;
-                let timeUnit = 'milisegundos';
+                let timeUnit = 'milliseconds';
                 if (seconds) {
                     divider = 1000;
-                    timeUnit = 'segundos';
+                    timeUnit = 'seconds';
                 }
                 console.log('-----------------------');
-                console.log(`Parâmetros do método ${propertyKey}: ${JSON.stringify(args)}`);
+                console.log(`Method parameters ${propertyKey}: ${JSON.stringify(args)}`);
                 const t1 = performance.now();
                 const returnValue = originalMethod.apply(this, args);
-                console.log(`Resultado do método: ${JSON.stringify(returnValue)}`);
+                console.log(`Method result: ${JSON.stringify(returnValue)}`);
                 const t2 = performance.now();
-                console.log(`${propertyKey} demorou ${(t2 - t1) / divider} ${timeUnit}`);
+                console.log(`${propertyKey} took ${(t2 - t1) / divider} ${timeUnit}`);
                 console.log('-----------------------');
                 return returnValue;
             };

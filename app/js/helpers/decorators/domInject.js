@@ -6,7 +6,7 @@ System.register([], function (exports_1, context_1) {
             let element;
             const getter = function () {
                 if (!element) {
-                    console.log(`buscando  ${selector} para injetar em ${key}`);
+                    console.log(`fetching  ${selector} to inject in ${key}`);
                     element = $(selector);
                 }
                 return element;
