@@ -8,3 +8,10 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 - [X] Elaborando uma solução de view
 - [X] Herança, reaproveitamento de código
 - [X] TypeScript definitions
+
+## TypeScript parte 2: Mais técnicas e boas práticas
+- [X] NameSpace e módulos externos
+- [ ] Lapidando nosso código
+- [ ] O poder dos decorators
+- [ ] API externa e interface
+- [ ] Mais sobre interfaces

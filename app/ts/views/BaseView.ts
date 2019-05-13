@@ -1,4 +1,4 @@
-abstract class BaseView<T> {
+export abstract class BaseView<T> {
 
     private _element: JQuery;
 

@@ -1,8 +1,11 @@
+import { Negotiations, Negotiation } from "../models/index";
+import { NegotiationsView, FeedbackView } from "../views/index";
+
 /**
  * This controller will handle the user inputs to build a negotiation
  */
 
-class NegotiationController {
+export class NegotiationController {
     private _inputData: JQuery;
     private _inputQuantity: JQuery;
     private _inputValue: JQuery;
