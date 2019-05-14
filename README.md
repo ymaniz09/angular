@@ -1,4 +1,4 @@
-# Cursos de Angular @ Alura
+# Cursos de Typescript @ Alura
 
 Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), disponível na plataforma da Alura.
 
@@ -17,5 +17,3 @@ Cursos da [formação Angular](https://cursos.alura.com.br/formacao-angular), di
 - [X] O poder dos decorators
 - [X] API externa e interface
 - [X] Mais sobre interfaces
-
-## Conhecendo o Angular e trabalhando com Webpack
